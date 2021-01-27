@@ -1,20 +1,13 @@
 package tests;
 
-import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import pages.GoogleCloudPage;
-import pages.GoogleCloudPricingCalculator;
-import pages.SearchResultPage;
-import pages.TempMailPage;
 import utils.AdditionalMethods;
 
 public class GoogleCloudPlatformPricingCalculatorTest extends ConfigTests {
 
     AdditionalMethods tabs = new AdditionalMethods();
 
-
-    @Test(dataProvider = "valuesCheckEnteredValues")
+/*
+    @Test(dataProvider = "valuesCheckEnteredValues", groups = "regression")
     public void checkEnteredDataForPricingCalculator(String visibleNameOfWebElement, String expectedValue) {
         new GoogleCloudPage(driver)
                 .openPage()
@@ -51,7 +44,7 @@ public class GoogleCloudPlatformPricingCalculatorTest extends ConfigTests {
         };
     }
 
-     @Test
+     @Test(groups = {"functional"})
     public void checkCostForPricingCalculatorPerOneMonth() {
         new GoogleCloudPage(driver)
                 .openPage()
@@ -77,7 +70,7 @@ public class GoogleCloudPlatformPricingCalculatorTest extends ConfigTests {
 
     }
 
-    @Test
+    @Test(groups = {"functional"})
     public void checkCostForPricingCalculatorPerOneMonthInEmail() {
         new GoogleCloudPage(driver)
                 .openPage()
@@ -121,4 +114,5 @@ public class GoogleCloudPlatformPricingCalculatorTest extends ConfigTests {
 
         Assert.assertTrue(estimateCost.contains(estimateCostFromMail));
     }
+    */
 }

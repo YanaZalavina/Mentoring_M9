@@ -10,7 +10,7 @@ public class ConfigTests {
 
     protected WebDriver driver;
 
-    @BeforeMethod()
+    @BeforeMethod(alwaysRun = true)
         public void browserSetUp() {
         driver = DriverSingleton.getDriver();
     }

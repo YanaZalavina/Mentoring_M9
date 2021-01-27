@@ -9,12 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 import utils.AdditionalMethods;
 
-import java.util.ArrayList;
-
 import static waits.Waits.waitToBeClickableForElement;
 import static waits.Waits.waitToBeVisibleForElement;
 
-public class GoogleCloudPricingCalculator extends AbstractPage{
+public class GoogleCloudPricingCalculatorPage extends AbstractPage{
 
     private final Logger logger = LogManager.getRootLogger();
     private String startPartOfPath = "//*[contains(text(), '";
@@ -23,7 +21,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
     private String childFrameTag = "iframe";
     private String xpathResultEstimateBlock = "//md-content[@ng-if='cloudCartCtrl.showComputeItems']";
 
-    public GoogleCloudPricingCalculator(WebDriver driver){
+    public GoogleCloudPricingCalculatorPage(WebDriver driver){
         super(driver);
     }
 
@@ -88,7 +86,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
                 +endPartOfPath;
     }
 
-    public GoogleCloudPricingCalculator loadPage(){
+    public GoogleCloudPricingCalculatorPage loadPage(){
         driver.switchTo().frame(driver.findElement(By.xpath(parentFrame)));
         driver.switchTo().frame(driver.findElement(By.tagName(childFrameTag)));
         PageFactory.initElements(driver, this);
@@ -96,14 +94,14 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
         logger.info("GoogleCloudPricingCalculator page loaded");
         return this;
     }
-    public GoogleCloudPricingCalculator enterNumberOfInstances(String numberOfInstances){
+    public GoogleCloudPricingCalculatorPage enterNumberOfInstances(String numberOfInstances){
         numberOfInstancesLabel.click();
         new Actions(driver).sendKeys(numberOfInstancesLabel, numberOfInstances).build().perform();
         logger.info("Entered number of instances: " + numberOfInstances);
         return this;
     }
 
-    public GoogleCloudPricingCalculator selectSeries(String selectedSeries){
+    public GoogleCloudPricingCalculatorPage selectSeries(String selectedSeries){
         waitToBeVisibleForElement(driver, seriesDropdownButton);
         new AdditionalMethods().findAndClickOnElement(driver, seriesDropdownButton);
         waitToBeClickableForElement(driver, elementFromDropdownList);
@@ -112,7 +110,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
         return this;
     }
 
-    public GoogleCloudPricingCalculator selectMachineType(String selectedMachineType){
+    public GoogleCloudPricingCalculatorPage selectMachineType(String selectedMachineType){
         waitToBeVisibleForElement(driver, machineTypeDropdownButton);
         new AdditionalMethods().findAndClickOnElement(driver, machineTypeDropdownButton);
         waitToBeClickableForElement(driver, elementFromDropdownList);
@@ -121,14 +119,14 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
         return this;
     }
 
-    public GoogleCloudPricingCalculator activateCheckBoxAddGPUs() {
+    public GoogleCloudPricingCalculatorPage activateCheckBoxAddGPUs() {
         waitToBeClickableForElement(driver, checkBoxAddGPUs);
         new AdditionalMethods().findAndClickOnElement(driver, checkBoxAddGPUs);
         logger.info("Check-box AddGPUs activated");
         return this;
     }
 
-    public GoogleCloudPricingCalculator enterNumberOfGPUs(String enteredNumberOfGPUs) {
+    public GoogleCloudPricingCalculatorPage enterNumberOfGPUs(String enteredNumberOfGPUs) {
         waitToBeVisibleForElement(driver, numberOfGPUsDropdownButton);
         new AdditionalMethods().findAndClickOnElement(driver, numberOfGPUsDropdownButton);
         waitToBeClickableForElement(driver, elementFromDropdownList);
@@ -137,7 +135,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
         return this;
     }
 
-    public GoogleCloudPricingCalculator selectGPUType(String selectedGPUType) {
+    public GoogleCloudPricingCalculatorPage selectGPUType(String selectedGPUType) {
         waitToBeVisibleForElement(driver, GPUTypeDropdownButton);
         new AdditionalMethods().findAndClickOnElement(driver, GPUTypeDropdownButton);
         waitToBeClickableForElement(driver, elementFromDropdownList);
@@ -147,7 +145,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
     }
 
 
-    public GoogleCloudPricingCalculator selectLocalSSD(String selectedLocalSSD){
+    public GoogleCloudPricingCalculatorPage selectLocalSSD(String selectedLocalSSD){
         waitToBeVisibleForElement(driver, localSSDDropdownButton);
         new AdditionalMethods().findAndClickOnElement(driver, localSSDDropdownButton);
         waitToBeClickableForElement(driver, elementFromDropdownList);
@@ -157,7 +155,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
     }
 
 
-    public GoogleCloudPricingCalculator selectDatacenterLocation(String selectedDatacenterLocation){
+    public GoogleCloudPricingCalculatorPage selectDatacenterLocation(String selectedDatacenterLocation){
         waitToBeVisibleForElement(driver, datacenterLocationDropdownButton);
         new AdditionalMethods().findAndClickOnElement(driver, datacenterLocationDropdownButton);
         waitToBeClickableForElement(driver, elementFromDropdownList);
@@ -167,7 +165,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
     }
 
 
-    public GoogleCloudPricingCalculator selectCommittedUsage(String selectedCommittedUsage){
+    public GoogleCloudPricingCalculatorPage selectCommittedUsage(String selectedCommittedUsage){
         waitToBeVisibleForElement(driver, committedUsageDropdownButton);
         new AdditionalMethods().findAndClickOnElement(driver, committedUsageDropdownButton);
         waitToBeClickableForElement(driver, elementFromDropdownList);
@@ -177,21 +175,21 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
     }
 
 
-    public GoogleCloudPricingCalculator clickOnAddToEstimate(){
+    public GoogleCloudPricingCalculatorPage clickOnAddToEstimate(){
         waitToBeVisibleForElement(driver, addToEstimateButton);
         new AdditionalMethods().findAndClickOnElement(driver, addToEstimateButton);
         logger.info("Added To Estimate");
         return this;
     }
 
-    public GoogleCloudPricingCalculator clickOnEmailEstimateButton(){
+    public GoogleCloudPricingCalculatorPage clickOnEmailEstimateButton(){
         waitToBeVisibleForElement(driver, emailEstimateButton);
         new AdditionalMethods().findAndClickOnElement(driver, emailEstimateButton);
         logger.info("Email estimate window opened");
         return this;
     }
 
-    public GoogleCloudPricingCalculator enterCopiedEmail(){
+    public GoogleCloudPricingCalculatorPage enterCopiedEmail(){
         waitToBeClickableForElement(driver, emailInput);
         emailInput.click();
         new AdditionalMethods().findAndClickOnElement(driver, emailInput);
@@ -200,7 +198,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
         return this;
     }
 
-    public GoogleCloudPricingCalculator clickOnSendEmailButton(){
+    public GoogleCloudPricingCalculatorPage clickOnSendEmailButton(){
         waitToBeVisibleForElement(driver, sendEmailButton);
         new AdditionalMethods().findAndClickOnElement(driver, sendEmailButton);
         logger.info("Sent email with estimation");
@@ -212,7 +210,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
         return driver.findElement(By.xpath(createXPath(visibleNameOfWebElement))).isDisplayed();
     }
 
-    public GoogleCloudPricingCalculator clickOnDeleteEstimateButton(){
+    public GoogleCloudPricingCalculatorPage clickOnDeleteEstimateButton(){
         waitToBeVisibleForElement(driver, deleteEstimateButton);
         new AdditionalMethods().findAndClickOnElement(driver, deleteEstimateButton);
         logger.info("Estimation deleted");
@@ -237,7 +235,7 @@ public class GoogleCloudPricingCalculator extends AbstractPage{
         return ((JavascriptExecutor)driver).executeScript("return document.URL;").toString();
     }
 
-   public GoogleCloudPricingCalculator openNewTab(){
+   public GoogleCloudPricingCalculatorPage openNewTab(){
        ((JavascriptExecutor)driver).executeScript("window.open()");
        logger.info("Opened new tab");
         return this;

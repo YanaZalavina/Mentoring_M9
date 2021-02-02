@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.AdditionalMethods;
+
+import static com.codeborne.selenide.Selenide.*;
 
 public class GoogleCloudPage extends AbstractPage{
     private static final String HOMEPAGE_URL = "https://cloud.google.com/";
@@ -41,6 +44,20 @@ public class GoogleCloudPage extends AbstractPage{
     public GoogleCloudPage pressEnter(){
         searchButton.sendKeys(Keys.ENTER);
         logger.info("Pressed Enter");
+        return this;
+    }
+    //fields for using Selenide
+    private SelenideElement searchButtonSD = $(By.xpath("//input[@aria-label='Search']"));
+    //methods for using Selenide
+    public GoogleCloudPage openPageWithSelenide() {
+       // logger.info("Opened GoogleCloud Page");
+        open(HOMEPAGE_URL);
+        return this;
+    }
+
+    public GoogleCloudPage searchingWithSelenide(String valueForSearching){
+        searchButtonSD.val(valueForSearching).pressEnter();
+       // logger.info("Entered value for searching: " + valueForSearching);
         return this;
     }
 }

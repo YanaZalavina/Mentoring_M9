@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -9,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 import utils.AdditionalMethods;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.*;
 import static waits.Waits.waitToBeClickableForElement;
 import static waits.Waits.waitToBeVisibleForElement;
 
@@ -20,6 +23,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage{
     private String parentFrame = "//iframe[contains(@name, 'goog')]";
     private String childFrameTag = "iframe";
     private String xpathResultEstimateBlock = "//md-content[@ng-if='cloudCartCtrl.showComputeItems']";
+    private String elementXPathFromDropdownList = "//*[@class='md-select-menu-container md-active md-clickable']//md-option/div";
 
     public GoogleCloudPricingCalculatorPage(WebDriver driver){
         super(driver);
@@ -239,5 +243,115 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage{
        ((JavascriptExecutor)driver).executeScript("window.open()");
        logger.info("Opened new tab");
         return this;
+    }
+
+    //fields for using Selenide
+    private SelenideElement numberOfInstancesLabelSD = $(By.xpath("//input[@ng-model='listingCtrl.computeServer.quantity']"));
+    private SelenideElement seriesDropdownButtonSD = $(By.xpath("//md-select-value[@id='select_value_label_59']//span[@class='md-select-icon']"));
+
+
+    //methods for using Selenide
+    public GoogleCloudPricingCalculatorPage loadPageWithSelenide(){
+        switchTo().frame($(By.xpath(parentFrame)));
+        switchTo().frame($(By.tagName(childFrameTag)));
+        PageFactory.initElements(driver, this);
+       // logger.info("GoogleCloudPricingCalculator page loaded");
+        return this;
+    }
+    public GoogleCloudPricingCalculatorPage enterNumberOfInstancesWithSelenide(String numberOfInstances){
+        numberOfInstancesLabelSD.val(numberOfInstances);
+       //logger.info("Entered number of instances: " + numberOfInstances);
+        return this;
+    }
+
+    public GoogleCloudPricingCalculatorPage selectSeriesWithSelenide(String selectedSeries){
+        seriesDropdownButtonSD.click();
+        $$(By.xpath(elementXPathFromDropdownList)).findBy(text(selectedSeries)).click();
+       // logger.info("Selected series: " + selectedSeries);
+        return this;
+    }
+
+    public GoogleCloudPricingCalculatorPage selectMachineTypeWithSelenide(String selectedMachineType){
+        waitToBeVisibleForElement(driver, machineTypeDropdownButton);
+        new AdditionalMethods().findAndClickOnElement(driver, machineTypeDropdownButton);
+        waitToBeClickableForElement(driver, elementFromDropdownList);
+        new AdditionalMethods().findAndClickOnElementFromDropDownList(driver, selectedMachineType);
+        logger.info("Selected machine type: " + selectedMachineType);
+        return this;
+    }
+
+    public GoogleCloudPricingCalculatorPage activateCheckBoxAddGPUsWithSelenide() {
+        waitToBeClickableForElement(driver, checkBoxAddGPUs);
+        new AdditionalMethods().findAndClickOnElement(driver, checkBoxAddGPUs);
+        logger.info("Check-box AddGPUs activated");
+        return this;
+    }
+
+    public GoogleCloudPricingCalculatorPage enterNumberOfGPUsWithSelenide(String enteredNumberOfGPUs) {
+        waitToBeVisibleForElement(driver, numberOfGPUsDropdownButton);
+        new AdditionalMethods().findAndClickOnElement(driver, numberOfGPUsDropdownButton);
+        waitToBeClickableForElement(driver, elementFromDropdownList);
+        new AdditionalMethods().findAndClickOnElementFromDropDownList(driver, enteredNumberOfGPUs);
+        logger.info("Entered number of GPUs: " + enteredNumberOfGPUs);
+        return this;
+    }
+
+    public GoogleCloudPricingCalculatorPage selectGPUTypeWithSelenide(String selectedGPUType) {
+        waitToBeVisibleForElement(driver, GPUTypeDropdownButton);
+        new AdditionalMethods().findAndClickOnElement(driver, GPUTypeDropdownButton);
+        waitToBeClickableForElement(driver, elementFromDropdownList);
+        new AdditionalMethods().findAndClickOnElementFromDropDownList(driver, selectedGPUType);
+        logger.info("Selected GPU Type: " + selectedGPUType);
+        return this;
+    }
+
+
+    public GoogleCloudPricingCalculatorPage selectLocalSSDWithSelenide(String selectedLocalSSD){
+        waitToBeVisibleForElement(driver, localSSDDropdownButton);
+        new AdditionalMethods().findAndClickOnElement(driver, localSSDDropdownButton);
+        waitToBeClickableForElement(driver, elementFromDropdownList);
+        new AdditionalMethods().findAndClickOnElementFromDropDownList(driver, selectedLocalSSD);
+        logger.info("Selected Local SSD: " + selectedLocalSSD);
+        return this;
+    }
+
+
+    public GoogleCloudPricingCalculatorPage selectDatacenterLocationWithSelenide(String selectedDatacenterLocation){
+        waitToBeVisibleForElement(driver, datacenterLocationDropdownButton);
+        new AdditionalMethods().findAndClickOnElement(driver, datacenterLocationDropdownButton);
+        waitToBeClickableForElement(driver, elementFromDropdownList);
+        new AdditionalMethods().findAndClickOnElementFromDropDownList(driver, selectedDatacenterLocation);
+        logger.info("Selected Datacenter Location: " + selectedDatacenterLocation);
+        return this;
+    }
+
+
+    public GoogleCloudPricingCalculatorPage selectCommittedUsageWithSelenide(String selectedCommittedUsage){
+        waitToBeVisibleForElement(driver, committedUsageDropdownButton);
+        new AdditionalMethods().findAndClickOnElement(driver, committedUsageDropdownButton);
+        waitToBeClickableForElement(driver, elementFromDropdownList);
+        new AdditionalMethods().findAndClickOnElementFromDropDownList(driver, selectedCommittedUsage);
+        logger.info("Selected Committed Usage: " + selectedCommittedUsage);
+        return this;
+    }
+
+
+    public GoogleCloudPricingCalculatorPage clickOnAddToEstimateWithSelenide(){
+        waitToBeVisibleForElement(driver, addToEstimateButton);
+        new AdditionalMethods().findAndClickOnElement(driver, addToEstimateButton);
+        logger.info("Added To Estimate");
+        return this;
+    }
+
+    public GoogleCloudPricingCalculatorPage clickOnDeleteEstimateButtonWithSelenide(){
+        waitToBeVisibleForElement(driver, deleteEstimateButton);
+        new AdditionalMethods().findAndClickOnElement(driver, deleteEstimateButton);
+        logger.info("Estimation deleted");
+        return this;
+    }
+
+    public int countNumberOfElementsEstimateResultsWithSelenide(){
+        logger.info("Counting number of elements Estimate Results");
+        return driver.findElements(By.xpath(xpathResultEstimateBlock)).size();
     }
 }

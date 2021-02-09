@@ -28,6 +28,6 @@ public class FirefoxCreator extends BaseDriverCreator {
 
     @Override
     public Dimension getDimension() {
-        return new Dimension(11, 20);
+        return new Dimension(1100, 200);
     }
 }

@@ -24,6 +24,6 @@ public class ChromeCreator extends BaseDriverCreator {
 
     @Override
     public Dimension getDimension() {
-        return new Dimension(20, 20);
+        return new Dimension(110, 200);
     }
 }

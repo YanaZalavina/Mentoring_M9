@@ -23,31 +23,34 @@ public class DriverSingleton {
 
     public static WebDriver getDriver() {
         if (null == driver) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+            /*
             //switch (System.getProperty("browser")){
                 switch (BrowserSelector.getBrowserName(BROWSER_NAME)){
                 case "firefox": {
-                   /* WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();*/
-                  driver = new FirefoxCreator().createWebDriver(driver);
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                 // driver = new FirefoxCreator().createWebDriver(driver);
 
                    /* FirefoxOptions options = new FirefoxOptions();
                     options.setCapability("platform", "WIN10");
                     options.setCapability("platformName", "windows");
-                    driver = new RemoteWebDriver(new URL(SECOND_NODE), options);*/
+                    driver = new RemoteWebDriver(new URL(SECOND_NODE), options);
                    break;
                 }
                 default: {
-                   /* WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();*/
-                   driver = new ChromeCreator().createWebDriver(driver);
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                   //driver = new ChromeCreator().createWebDriver(driver);
 
                     /*ChromeOptions options = new ChromeOptions();
                     options.setCapability("platform", "WIN10");
                     options.setCapability("platformName", "windows");
-                    driver = new RemoteWebDriver(new URL(FIRST_NODE), options);*/
+                    driver = new RemoteWebDriver(new URL(FIRST_NODE), options);
                     break;
                 }
-        }
+        }*/
             driver.manage().window().maximize();
         }
         return driver;

@@ -15,11 +15,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class GoogleCulcTests {
-    protected WebDriver driver;
+ /*   protected WebDriver driver;
 
     @Test
     public void search_selenide_in_google() throws InterruptedException {
-        /* new GoogleCloudPage(driver)
+         new GoogleCloudPage(driver)
                 .openPageWithSelenide()
                 .searchingWithSelenide("Google Cloud Platform Pricing Calculator");
 
@@ -29,7 +29,7 @@ public class GoogleCulcTests {
                 .enterNumberOfInstancesWithSelenide("4")
                 .selectSeriesWithSelenide("N1");
         Thread.sleep(6000);
-*/
+
        open("https://cloud.google.com/");
         $(By.xpath("//input[@aria-label='Search']")).val("Google Cloud Platform Pricing Calculator").pressEnter();
         $(byText("Google Cloud Platform Pricing Calculator")).click();
@@ -44,5 +44,5 @@ public class GoogleCulcTests {
        // $("#res .g").shouldBe(visible).shouldHave(
         //        text("Selenide: concise UI tests in Java"),
           //      text("selenide.org"));
-    }
+    }*/
 }

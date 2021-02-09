@@ -33,7 +33,7 @@ public class SearchResultPage extends AbstractPage{
         logger.info("Selected Link To Pricing Calculator");
         return this;
     }
-
+/*
     //fields for using Selenide
     private SelenideElement linkToPricingCalculatorSD = $(By.xpath("//a/b[text()='Google Cloud Platform Pricing Calculator']"));
 
@@ -43,4 +43,5 @@ public class SearchResultPage extends AbstractPage{
         //logger.info("Selected Link To Pricing Calculator");
         return this;
     }
+     */
 }

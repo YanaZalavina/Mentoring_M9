@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 import utils.AdditionalMethods;
 
+import java.util.List;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static waits.Waits.waitToBeClickableForElement;
@@ -24,6 +26,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage{
     private String childFrameTag = "iframe";
     private String xpathResultEstimateBlock = "//md-content[@ng-if='cloudCartCtrl.showComputeItems']";
     private String elementXPathFromDropdownList = "//*[@class='md-select-menu-container md-active md-clickable']//md-option/div";
+    private static String commonXPathForElementsFromDropdownList = "//*[@class='md-select-menu-container md-active md-clickable']//md-option/div";
 
     public GoogleCloudPricingCalculatorPage(WebDriver driver){
         super(driver);
@@ -245,6 +248,11 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage{
         return this;
     }
 
+    public List<WebElement> getListOfElementsFromDropDown(){
+        List<WebElement> options = driver.findElements(By.xpath(commonXPathForElementsFromDropdownList));
+        return options;
+    }
+/*
     //fields for using Selenide
     private SelenideElement numberOfInstancesLabelSD = $(By.xpath("//input[@ng-model='listingCtrl.computeServer.quantity']"));
     private SelenideElement seriesDropdownButtonSD = $(By.xpath("//md-select-value[@id='select_value_label_59']//span[@class='md-select-icon']"));
@@ -353,5 +361,5 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage{
     public int countNumberOfElementsEstimateResultsWithSelenide(){
         logger.info("Counting number of elements Estimate Results");
         return driver.findElements(By.xpath(xpathResultEstimateBlock)).size();
-    }
+    } */
 }

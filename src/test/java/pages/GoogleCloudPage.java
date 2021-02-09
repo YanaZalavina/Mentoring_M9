@@ -24,6 +24,7 @@ public class GoogleCloudPage extends AbstractPage{
         PageFactory.initElements(this.driver, this);
     }
 
+
     @FindBy(xpath = "//input[@aria-label='Search']")
     private WebElement searchButton;
 
@@ -46,6 +47,7 @@ public class GoogleCloudPage extends AbstractPage{
         logger.info("Pressed Enter");
         return this;
     }
+    /*
     //fields for using Selenide
     private SelenideElement searchButtonSD = $(By.xpath("//input[@aria-label='Search']"));
     //methods for using Selenide
@@ -60,4 +62,5 @@ public class GoogleCloudPage extends AbstractPage{
        // logger.info("Entered value for searching: " + valueForSearching);
         return this;
     }
+    */
 }

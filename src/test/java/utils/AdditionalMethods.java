@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.GoogleCloudPricingCalculatorPage;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,10 +13,8 @@ import java.util.List;
 
 public class AdditionalMethods {
 
-    private static String commonXPathForElementsFromDropdownList = "//*[@class='md-select-menu-container md-active md-clickable']//md-option/div";
-
     public AdditionalMethods findAndClickOnElementFromDropDownList(WebDriver driver, String visibleNameOfWebElement){
-        List<WebElement> options = driver.findElements(By.xpath(commonXPathForElementsFromDropdownList));
+        List<WebElement> options = new GoogleCloudPricingCalculatorPage(driver).getListOfElementsFromDropDown();
         JavascriptExecutor js = (JavascriptExecutor)driver;
         for (int i=0; i<options.size(); i++) {
             if(options.get(i).getText().contains(visibleNameOfWebElement)) {

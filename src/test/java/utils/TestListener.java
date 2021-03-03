@@ -1,6 +1,7 @@
 package utils;
 
 import driver.DriverSingleton;
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +28,8 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestFailure(ITestResult iTestResult) {
-        saveScreenshot();
+        //saveScreenshot();
+        makeScreenshot();
     }
 
     public void onTestSkipped(ITestResult iTestResult) {
@@ -46,8 +48,8 @@ public class TestListener implements ITestListener {
 
     }
 
-    private void saveScreenshot(){
-        File screenCapture = ((TakesScreenshot) DriverSingleton
+     /*private void saveScreenshot(){
+       File screenCapture = ((TakesScreenshot) DriverSingleton
                 .getDriver())
                 .getScreenshotAs(OutputType.FILE);
         try {
@@ -59,6 +61,13 @@ public class TestListener implements ITestListener {
         } catch (IOException e) {
             log.error("Failed to save screenshot: " + e.getLocalizedMessage());
         }
+    }*/
+
+    @Attachment(value = "Page screenshot", type = "image/png")
+    private byte[] makeScreenshot() {
+        return ((TakesScreenshot) DriverSingleton
+                .getDriver())
+                .getScreenshotAs(OutputType.BYTES);
     }
 
     private String getCurrentTimeAsString(){

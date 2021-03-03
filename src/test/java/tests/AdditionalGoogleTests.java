@@ -7,6 +7,7 @@ import pages.GoogleCloudPage;
 import pages.GoogleCloudPricingCalculatorPage;
 import pages.SearchResultPage;
 import service.GoogleCloudCreator;
+import utils.AdditionalMethods;
 
 public class AdditionalGoogleTests extends ConfigTests {
 
@@ -35,7 +36,7 @@ public class AdditionalGoogleTests extends ConfigTests {
         Assert.assertEquals(new GoogleCloudPricingCalculatorPage(driver).countNumberOfElementsEstimateResults(), 0);
     }
 
- /*   @Test(groups = {"regression"})
+    @Test(groups = {"functional"})
     public void checkFormComputerEngine() {
         new GoogleCloudPage(driver)
                 .openPage()
@@ -43,10 +44,11 @@ public class AdditionalGoogleTests extends ConfigTests {
                 .pressEnter();
         new SearchResultPage(driver).selectLinkToPricingCalculator();
         Assert.assertTrue(
-                new GoogleCloudPricingCalculator(driver)
+                new GoogleCloudPricingCalculatorPage(driver)
                 .loadPage()
                 .elementLocatedOnPage("Machine Class"));
     }
+    /*
     @Test(groups = {"functional"})
     public void checkDeleteEstimate() {
         new GoogleCloudPage(driver)
@@ -55,7 +57,7 @@ public class AdditionalGoogleTests extends ConfigTests {
                 .pressEnter();
 
         new SearchResultPage(driver).selectLinkToPricingCalculator();
-        new GoogleCloudPricingCalculator(driver)
+        new GoogleCloudPricingCalculatorPage(driver)
                 .loadPage()
                 .enterNumberOfInstances("4")
                 .selectSeries("N1")
@@ -68,32 +70,32 @@ public class AdditionalGoogleTests extends ConfigTests {
                 .selectCommittedUsage("1 Year")
                 .clickOnAddToEstimate()
                 .clickOnDeleteEstimateButton();
-        Assert.assertEquals(new GoogleCloudPricingCalculator(driver).countNumberOfElementsEstimateResults(), 0);
-    }
+        Assert.assertEquals(new GoogleCloudPricingCalculatorPage(driver).countNumberOfElementsEstimateResults(), 0);
+    }*/
 
-    @Test(groups = {"regression"})
+    @Test(groups = {"functional"})
     public void checkURLOfPageGoogleCloudPricingCalculator() {
         new GoogleCloudPage(driver)
                 .openPage()
                 .enterValueForSearching("Google Cloud Platform Pricing Calculator")
                 .pressEnter();
         new SearchResultPage(driver).selectLinkToPricingCalculator();
-        new GoogleCloudPricingCalculator(driver)
+        new GoogleCloudPricingCalculatorPage(driver)
                 .loadPage();
-        Assert.assertEquals(new GoogleCloudPricingCalculator(driver).getURL(), "https://cloudpricingcalculator.appspot.com/");
+        Assert.assertEquals(new GoogleCloudPricingCalculatorPage(driver).getURL(), "https://cloudpricingcalculator.appspot.com/");
     }
 
-    @Test (groups = {"regression"})
+    @Test (groups = {"functional"})
     public void checkActualData() {
         new GoogleCloudPage(driver)
                 .openPage()
                 .enterValueForSearching("Google Cloud Platform Pricing Calculator")
                 .pressEnter();
         new SearchResultPage(driver).selectLinkToPricingCalculator();
-        String dateOnGooglePage = new GoogleCloudPricingCalculator(driver)
+        String dateOnGooglePage = new GoogleCloudPricingCalculatorPage(driver)
                         .loadPage()
                         .getWebElementText("Last update");
         Assert.assertTrue(dateOnGooglePage.contains(new AdditionalMethods().getCurrentDateMonthYear()));
     }
-    */
+
 }
